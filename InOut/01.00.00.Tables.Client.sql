@@ -14,6 +14,11 @@ create table PersonCodes(
 	Arrears int 
 );
 
+create table Devices(
+	DeviceId integer not null primary key,
+	IPAddress char(16) not nul
+	InoutFlag smallint not null
+);
 
 create index UX_InoutRecords_PersonId on InoutRecords(PersonId);
 create index UX_PersonCodes_CardId on PersonCodes(CardId);
