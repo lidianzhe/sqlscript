@@ -1,4 +1,4 @@
-create table InoutRecords (
+﻿create table InoutRecords (
     InoutId integer  not null primary key  autoincrement , --主关键字，自动增量
     PersonId int not null, --人员Id
     --CardId  int , --卡号,冗余
@@ -20,6 +20,7 @@ create table Devices(
 	InoutFlag smallint not null
 );
 
+
 create index UX_InoutRecords_PersonId on InoutRecords(PersonId);
 create index UX_PersonCodes_CardId on PersonCodes(CardId);
-
+create index UX_Devices_IPAddress on Devices(IPAddress);
