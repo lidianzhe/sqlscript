@@ -1,10 +1,10 @@
---´´½¨Ä¿Â¼
+--åˆ›å»ºç›®å½•
 exec master..xp_cmdshell 'if not exist c:\database md c:\database'
 
 if not exists (select 1 from master.dbo.sysdatabases
 			where has_dbaccess(name) = 1 and name='azBase') 
 begin
---´´½¨Êı¾İ¿â
+--åˆ›å»ºæ•°æ®åº“
 create database azBase on
  (
 	name= azBase_dat,
@@ -17,7 +17,7 @@ create database azBase on
 	filename='c:\database\azBase_log.ldf',
 	size = 1
 )
---ÉèÖÃÄ£Ê½
+--è®¾ç½®æ¨¡å¼
 alter database azBase set recovery SIMPLE
 
 end  --end create database

@@ -1,13 +1,13 @@
 use azInterface
 /*---------------------------------------------------------------
 Author: lihongjun 2014-09-05 10:29
-ÃÅ½û½Ó¿ÚËµÃ÷£º
-	1¡¢ÊµÊ±Ïòif_InoutRecords±íÖĞ²åÈëË¢¿¨¼ÇÂ¼¡£
-	2¡¢¹Ø¼ü×ÖÒÔPersonIdÎª×¼£¬ÈßÓàÉè¼ÆÁËCardId¼°MobilePhone£¬ÕâÁ½¸ö×Ö¶Î¿ÉÒÔÎª¿Õ¡£
-	3¡¢if_InoutRecordsÏòÀúÊ·±íÇ¨ÒÆµÄ¹¤×÷ £¬²»ÓÃ¸ºÔğ´¦Àí¡£
+é—¨ç¦æ¥å£è¯´æ˜ï¼š
+	1ã€å®æ—¶å‘if_InoutRecordsè¡¨ä¸­æ’å…¥åˆ·å¡è®°å½•ã€‚
+	2ã€å…³é”®å­—ä»¥PersonIdä¸ºå‡†ï¼Œå†—ä½™è®¾è®¡äº†CardIdåŠMobilePhoneï¼Œè¿™ä¸¤ä¸ªå­—æ®µå¯ä»¥ä¸ºç©ºã€‚
+	3ã€if_InoutRecordså‘å†å²è¡¨è¿ç§»çš„å·¥ä½œ ï¼Œä¸ç”¨è´Ÿè´£å¤„ç†ã€‚
 */---------------------------------------------------------------
 
-/*ÇåÀí±í*/
+/*æ¸…ç†è¡¨*/
 if object_id('if_InoutRecords') is not null
 	drop table if_InoutRecords
 go
@@ -16,27 +16,27 @@ if object_id('if_InoutHistory') is not null
 go
 ---------------------------------------------------------------------------------------------------------
 /*
-ÃÅ½û³öÈë¼ÇÂ¼±í(Ö»±£Áô50ÌìµÄÊı¾İ)
+é—¨ç¦å‡ºå…¥è®°å½•è¡¨(åªä¿ç•™50å¤©çš„æ•°æ®)
 */
 create table if_InoutRecords (
-    InoutId int   identity(1,1) not null primary key  , --Ö÷¹Ø¼ü×Ö£¬×Ô¶¯ÔöÁ¿
-    PersonId int not null, --ÈËÔ±Id
-    CardId  int , --¿¨ºÅ,ÈßÓà
-    MobilePhone  int ,--ÊÖ»úºÅÂë£¬ÈßÓà
-    InoutTime datetime not null, --Ë¢¿¨Ê±¼ä
-    InoutFlag smallint not null -- ½ø³ö±êÊ¶£¬ 0£½½ø£¬1£½³ö
+    InoutId int   identity(1,1) not null primary key  , --ä¸»å…³é”®å­—ï¼Œè‡ªåŠ¨å¢é‡
+    PersonId int not null, --äººå‘˜Id
+    CardId  int , --å¡å·,å†—ä½™
+    MobilePhone  int ,--æ‰‹æœºå·ç ï¼Œå†—ä½™
+    InoutTime datetime not null, --åˆ·å¡æ—¶é—´
+    InoutFlag smallint not null -- è¿›å‡ºæ ‡è¯†ï¼Œ 0ï¼è¿›ï¼Œ1ï¼å‡º
 );
 go
 create index UX_InoutRecords_PersonId on if_InoutRecords(PersonId)
 go
-/*ÃÅ½û³öÈë¼ÇÂ¼ÀúÊ·Êı¾İ£¬±¸ÓÃ*/
+/*é—¨ç¦å‡ºå…¥è®°å½•å†å²æ•°æ®ï¼Œå¤‡ç”¨*/
 create table if_InoutHistory (
-    InoutId int   identity(1,1) not null primary key  , --Ö÷¹Ø¼ü×Ö£¬×Ô¶¯ÔöÁ¿
-    PersonId int not null, --ÈËÔ±Id
-    CardId  int , --¿¨ºÅ,ÈßÓà
-    MobilePhone  int ,--ÊÖ»úºÅÂë£¬ÈßÓà
-    InoutTime datetime not null, --Ë¢¿¨Ê±¼ä
-    InoutFlag smallint not null -- ½ø³ö±êÊ¶£¬ 0£½½ø£¬1£½³ö
+    InoutId int   identity(1,1) not null primary key  , --ä¸»å…³é”®å­—ï¼Œè‡ªåŠ¨å¢é‡
+    PersonId int not null, --äººå‘˜Id
+    CardId  int , --å¡å·,å†—ä½™
+    MobilePhone  int ,--æ‰‹æœºå·ç ï¼Œå†—ä½™
+    InoutTime datetime not null, --åˆ·å¡æ—¶é—´
+    InoutFlag smallint not null -- è¿›å‡ºæ ‡è¯†ï¼Œ 0ï¼è¿›ï¼Œ1ï¼å‡º
 );
 go
 

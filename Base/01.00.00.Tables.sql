@@ -1,9 +1,9 @@
 use azBase
-/*ÏÂÃæÖ÷ÒªÓÃÓÚ´´½¨»ù´¡±í
+/*ä¸‹é¢ä¸»è¦ç”¨äºåˆ›å»ºåŸºç¡€è¡¨
 */
 ---------------------------------------------------------------
 ---------------------------------------------------------------
-/*»ù´¡±í*/
+/*åŸºç¡€è¡¨*/
 if object_id('FK_OrganizationsPersonnel','F') is not null
 	alter table base_Personnel drop constraint FK_OrganizationsPersonnel;
 if object_id('base_Organizations') is not null
@@ -20,18 +20,18 @@ if object_id('base_Personnel') is not null
 	drop table base_Personnel
 ---------------------------------------------------------------------------------------------------------
 /*
-´´½¨×éÖ¯»ú¹¹±í
+åˆ›å»ºç»„ç»‡æœºæ„è¡¨
 */
 create table dbo.base_Organizations (
-    OrgId int  not null primary key, --ÕûĞÎ×éÖ¯»ú¹¹±àÂë
+    OrgId int  not null primary key, --æ•´å½¢ç»„ç»‡æœºæ„ç¼–ç 
     DomainId uniqueidentifier  not null,
-    OrgName nvarchar(100)  not null,--µ¥Î»»ò²¿ÃÅÃû³Æ
+    OrgName nvarchar(100)  not null,--å•ä½æˆ–éƒ¨é—¨åç§°
     ParentOrgId int  ,
-    OrgCode nvarchar(50)  , --¶şÎ»³¤¶ÈµÄ×éÖ¯»ú¹¹±àÂë
-    OrgSequal varchar(256) , --µ¥Î»ĞòÁĞ±àÂë
+    OrgCode nvarchar(50)  , --äºŒä½é•¿åº¦çš„ç»„ç»‡æœºæ„ç¼–ç 
+    OrgSequal varchar(256) , --å•ä½åºåˆ—ç¼–ç 
     SpellCode nvarchar(100)  ,
     BriefCode nvarchar(500)  ,
-    ComputedOrgName nvarchar(500)   ,--ÍêÕûµÄµ¥Î»Ãû³Æ
+    ComputedOrgName nvarchar(500)   ,--å®Œæ•´çš„å•ä½åç§°
     LeafNode bit  ,
     Depth tinyint  ,
     IsDeleted bit default 0 
@@ -41,7 +41,7 @@ create unique index UX_Organizations_DomainId on base_Organizations(DomainId)
 go
 --------------------------------------------------------------
 /*
-´´½¨Ö°Îñ±í
+åˆ›å»ºèŒåŠ¡è¡¨
 */
 create table base_Dutykind(
 	Id int identity(1,1) not null primary key,
@@ -52,7 +52,7 @@ go
 
 --------------------------------------------------------------
 /*
-´´½¨¹¤ÖÖ±í
+åˆ›å»ºå·¥ç§è¡¨
 */
 create table base_TypeOfWork(
 	Id int identity(1,1) not null primary key,
@@ -62,7 +62,7 @@ create table base_TypeOfWork(
 )
 go
 --------------------------------------------------------------
-/*¼¸ÏßÈËÔ±±í*/
+/*å‡ çº¿äººå‘˜è¡¨*/
 create table base_Level(
 	Id int identity(1,1) not null primary key,
 	LevelId smallint not null unique  ,
@@ -70,7 +70,7 @@ create table base_Level(
 )
 go
 ---------------------------------------------------------------------------------------------------------
-/*ÓÃ¹¤ÖÆ¶È±í*/
+/*ç”¨å·¥åˆ¶åº¦è¡¨*/
 create table base_Regime(
 	Id int identity(1,1) not null primary key,
 	RegimeId smallint not null unique,
@@ -78,26 +78,26 @@ create table base_Regime(
 )
 go
 ---------------------------------------------------------------------------------------------------------
-/*´´½¨ÈËÔ±ĞÅÏ¢±í*/
+/*åˆ›å»ºäººå‘˜ä¿¡æ¯è¡¨*/
 create table dbo.base_Personnel (
     	PersonId int  not null primary key,
     	OrgId int  not null,
-    	Name nvarchar(50)  not null, --ĞÕÃû
-	Pinyin varchar(10) , --¼òÆ´
-	FullPinyin nvarchar(50), --È«Æ´
-    	Sex nvarchar(3)  , --ĞÔ±ğ
-    	Age int  , --ÄêÁä
-	MobilePhone varchar(20), --ÊÖ»ú
-	Address nvarchar(50), --×¡Ö·
-	IsDeleted bit default 0 , --ÊÇ·ñÒÑ¼õÔ±(ÈíÉ¾³ı)
+    	Name nvarchar(50)  not null, --å§“å
+	Pinyin varchar(10) , --ç®€æ‹¼
+	FullPinyin nvarchar(50), --å…¨æ‹¼
+    	Sex nvarchar(3)  , --æ€§åˆ«
+    	Age int  , --å¹´é¾„
+	MobilePhone varchar(20), --æ‰‹æœº
+	Address nvarchar(50), --ä½å€
+	IsDeleted bit default 0 , --æ˜¯å¦å·²å‡å‘˜(è½¯åˆ é™¤)
 ----
 	RegimeId smallint,
 	TypeOfWorkId smallint,
 	DutykindId smallint default 1,
-	LevelId smallint, --¼¸ÏßÈËÔ±
+	LevelId smallint, --å‡ çº¿äººå‘˜
 ----
-	Photo image, --ÏàÆ¬
-	IsKeepped bit --±£ÁôÈËÔ±,ÌØÊâÓÃÍ¾
+	Photo image, --ç›¸ç‰‡
+	IsKeepped bit --ä¿ç•™äººå‘˜,ç‰¹æ®Šç”¨é€”
 );
 go
 

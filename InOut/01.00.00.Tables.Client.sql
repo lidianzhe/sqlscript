@@ -1,10 +1,10 @@
 create table InoutRecords (
-    InoutId integer  not null primary key  autoincrement , --Ö÷¹Ø¼ü×Ö£¬×Ô¶¯ÔöÁ¿
-    PersonId int not null, --ÈËÔ±Id
-    --CardId  int , --¿¨ºÅ,ÈßÓà
-    --MobilePhone  int ,--ÊÖ»úºÅÂë£¬ÈßÓà
-    InoutTime datetime not null, --Ë¢¿¨Ê±¼ä
-    InoutFlag smallint not null -- ½ø³ö±êÊ¶£¬ 0£½½ø£¬1£½³ö
+    InoutId integer  not null primary key  autoincrement , --ä¸»å…³é”®å­—ï¼Œè‡ªåŠ¨å¢é‡
+    PersonId int not null, --äººå‘˜Id
+    --CardId  int , --å¡å·,å†—ä½™
+    --MobilePhone  int ,--æ‰‹æœºå·ç ï¼Œå†—ä½™
+    InoutTime datetime not null, --åˆ·å¡æ—¶é—´
+    InoutFlag smallint not null -- è¿›å‡ºæ ‡è¯†ï¼Œ 0ï¼è¿›ï¼Œ1ï¼å‡º
 );
 
 create table PersonCodes(
