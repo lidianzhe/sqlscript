@@ -16,7 +16,7 @@ create table PersonCodes(
 
 create table Devices(
 	DeviceId integer not null primary key,
-	IPAddress char(16) not nul
+	IPAddress char(16) not null,
 	InoutFlag smallint not null
 );
 

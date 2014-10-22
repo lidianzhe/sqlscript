@@ -23,7 +23,7 @@ if object_id('base_Personnel') is not null
 创建组织机构表
 */
 create table dbo.base_Organizations (
-    OrgId int  not null primary key, --整形组织机构编码
+    OrgId int identity(1,1) not null primary key, --整形组织机构编码
     DomainId uniqueidentifier  not null,
     OrgName nvarchar(100)  not null,--单位或部门名称
     ParentOrgId int  ,
@@ -34,10 +34,14 @@ create table dbo.base_Organizations (
     ComputedOrgName nvarchar(500)   ,--完整的单位名称
     LeafNode bit  ,
     Depth tinyint  ,
-    IsDeleted bit default 0 
+    IsDeleted bit default 0 ,
+    --保留接口
+    if_OrgId	varchar(255) 
 );
 go
-create unique index UX_Organizations_DomainId on base_Organizations(DomainId)
+create  index UX_Organizations_OrgCode on base_Organizations(OrgCode)
+create  index UX_Organizations_if_OrgId on base_Organizations(if_OrgId)
+
 go
 --------------------------------------------------------------
 /*
@@ -80,13 +84,14 @@ go
 ---------------------------------------------------------------------------------------------------------
 /*创建人员信息表*/
 create table dbo.base_Personnel (
-    	PersonId int  not null primary key,
+    	PersonId int identity(1,1) not null primary key,
     	OrgId int  not null,
     	Name nvarchar(50)  not null, --姓名
 	Pinyin varchar(10) , --简拼
 	FullPinyin nvarchar(50), --全拼
     	Sex nvarchar(3)  , --性别
     	Age int  , --年龄
+		IdentityCard varchar(18),
 	MobilePhone varchar(20), --手机
 	Address nvarchar(50), --住址
 	IsDeleted bit default 0 , --是否已减员(软删除)
@@ -97,13 +102,18 @@ create table dbo.base_Personnel (
 	LevelId smallint, --几线人员
 ----
 	Photo image, --相片
-	IsKeepped bit --保留人员,特殊用途
+	IsKeepped bit, --保留人员,特殊用途
+----保留接口
+	if_PersonId	varchar(255)
 );
 go
 
 create index IX_base_Personnel_Pinyin on base_Personnel(Pinyin)
 create index IX_base_Personnel_OrgId on base_Personnel(OrgId)
 create index IX_base_Personnel_PersonId on base_Personnel (PersonId)
+--
+create index IX_base_Personnel_if_PersonId on base_Personnel (if_PersonId)
+
 go
 alter table base_Personnel add constraint FK_OrganizationsPersonnel
 	foreign key (OrgId) references base_Organizations(OrgId)
