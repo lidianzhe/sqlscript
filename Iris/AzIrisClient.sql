@@ -21,11 +21,12 @@ create table PersonIris(
 );
 create table InoutDetails(
 	PId integer not null primary key autoincrement,
-	DeviceId int not null,
+	DeviceNo varchar(20) ,
 	PersonId int null,
 	CardTime datetime,
 	Flag tinyint,
-	SeriesId tinyint
+	SeriesId tinyint,
+	if_UserNo integer
 );
 
 	
