@@ -26,11 +26,7 @@ create table InoutDetails(
 	CardTime datetime,
 	Flag tinyint,
 	SeriesId tinyint,
-<<<<<<< HEAD
 	if_UserNo integer --冗余
-=======
-	if_UserNo integer
->>>>>>> e6e01d0535dd714ec2712c67b7afdd4b28cd3dad
 );
 
 	
