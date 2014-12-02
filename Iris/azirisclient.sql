@@ -12,11 +12,12 @@ create table ConfigSettings(
 create table PersonIris(
 	PersonId int not null primary key,
 	Name varchar(20), --冗余
-	LeftIrisTemplate blob,
-	RightIrisTemplate blob,
+	LeftIrisTemplate varchar(1024),
+	RightIrisTemplate varchar(1024),
 	LeftIrisPath Text,
 	RightIrisPath Text,
 	FaceImagePath Text,
+	if_UserNo interger,
 	LastUpdatedTime	datetime
 );
 create table InoutDetails(
