@@ -102,7 +102,6 @@ create index IX_base_Personnel_PersonId on base_Personnel (PersonId);
 -- 
 create index IX_base_Personnel_if_PersonId on base_Personnel (if_PersonId);
 
-
 alter table base_Personnel add constraint FK_OrganizationsPersonnel
 	foreign key (OrgId) references base_Organizations(OrgId);
 -- ----------------------------------------------------------------------------------------------------

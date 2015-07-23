@@ -1,15 +1,14 @@
-﻿use azBase
-if object_id('base_Organizations_GenSequalData') is null
-	exec('create procedure base_Organizations_GenSequalData as return 1')
-go
+﻿use azbio;
+drop procedure if exists base_Organizations_GenSequalData;
+ 
 /*
 Function:生成结构化数据
 Author:lihongjun 2011/05/12 22:38
 exec base_Organizations_GenSequalData
 
 */
-alter procedure base_Organizations_GenSequalData
-as
+create procedure base_Organizations_GenSequalData
+begin
 update base_Organizations set OrgSequal=abs(OrgId),ComputedOrgName = OrgName
 
 while (1=1)
@@ -23,7 +22,7 @@ begin
 			select OrgId from base_Organizations where ParentOrgId is null 
 	)
 	
-	if @@ROWCOUNT=0
+	if row_count()=0
 		break
 end
 update base_Organizations set ComputedOrgName = dbo.dzSubSequalString(ComputedOrgName,3)
@@ -33,3 +32,4 @@ where dbo.dzGetSequalLevel(ComputedOrgName)>3
 --from base_Personnel p inner join base_Organizations o on
 --	p.OrgId = o.OrgId
 return 0
+end;
