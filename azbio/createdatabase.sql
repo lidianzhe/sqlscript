@@ -1,0 +1,1 @@
+create database if not exists azbio default character set utf8;
